@@ -36,7 +36,14 @@ Pra-pemrosesan meliputi pengisian nilai BMI yang hilang menggunakan median, peng
 \end{table}
 
 \section*{Hasil dan Diskusi}
-Tabel~\ref{tab:metrics} merangkum performa sembilan kombinasi aktivasi dan strategi gradient descent. Kombinasi sigmoid dengan stochastic gradient descent menghasilkan F1-score tertinggi sebesar 0,171 dan presisi 0,30, walaupun recall masih terbatas (0,12). Variasi tanh dengan stochastic gradient descent berada di peringkat kedua dengan F1-score 0,16 dan keseimbangan presisi-recall yang serupa. Strategi batch cenderung menghasilkan gradien yang stabil namun gagal mengenali kelas minoritas (F1-score 0), menandakan kebutuhan teknik penyeimbangan tambahan. Mini-batch menawarkan kompromi yang baik, terutama untuk aktivasi tanh, namun masih menghadapi tantangan pada recall karena ketidakseimbangan data.
+Evolusi loss dan akurasi selama pelatihan ditunjukkan pada Gambar~\ref{fig:loss-accuracy}, menegaskan bahwa model dengan optimisasi stochastic gradient descent mencapai konvergensi tercepat dan stabil dibandingkan dua strategi lainnya. Tabel~\ref{tab:metrics} merangkum performa sembilan kombinasi aktivasi dan strategi gradient descent. Kombinasi sigmoid dengan stochastic gradient descent menghasilkan F1-score tertinggi sebesar 0,171 dan presisi 0,30, walaupun recall masih terbatas (0,12). Variasi tanh dengan stochastic gradient descent berada di peringkat kedua dengan F1-score 0,16 dan keseimbangan presisi-recall yang serupa. Strategi batch cenderung menghasilkan gradien yang stabil namun gagal mengenali kelas minoritas (F1-score 0), menandakan kebutuhan teknik penyeimbangan tambahan. Mini-batch menawarkan kompromi yang baik, terutama untuk aktivasi tanh, namun masih menghadapi tantangan pada recall karena ketidakseimbangan data.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{loss-and-traning-accuracy.png}
+    \caption{Kurva loss dan akurasi pelatihan untuk tiga strategi gradient descent.}
+    \label{fig:loss-accuracy}
+\end{figure}
 
 \begin{table}[htbp]
     \centering
