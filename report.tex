@@ -14,12 +14,12 @@
 \maketitle
 
 \section*{Pendahuluan}
-Tugas ini mengevaluasi jaringan syaraf tiruan yang diimplementasikan dari awal dengan NumPy untuk memprediksi risiko stroke pada dataset Stroke Prediction dari Kaggle. Dataset terdiri atas 5.110 observasi setelah pembersihan awal, dengan 16 fitur hasil encoding serta rasio kelas positif sekitar 4,9\% pada kedua himpunan latih dan uji, menandakan masalah ketidakseimbangan kelas yang perlu diperhatikan selama pelatihan.【F:notebook.ipynb†L185-L371】
+Tugas ini mengevaluasi jaringan syaraf tiruan yang diimplementasikan dari awal dengan NumPy untuk memprediksi risiko stroke pada dataset Stroke Prediction dari Kaggle. Dataset terdiri atas 5.110 observasi setelah pembersihan awal, dengan 16 fitur hasil encoding serta rasio kelas positif sekitar 4,9\% pada kedua himpunan latih dan uji, menandakan masalah ketidakseimbangan kelas yang perlu diperhatikan selama pelatihan.
 
 \section*{Metodologi}
-Pra-pemrosesan meliputi pengisian nilai BMI yang hilang menggunakan median, penghapusan kategori gender langka, one-hot encoding fitur kategorikal, standardisasi fitur numerik, dan pembagian data 80:20 dengan stratifikasi label.【F:notebook.ipynb†L360-L399】 Jaringan menggunakan arsitektur \([\texttt{input\_dim},32,16,1]\) dengan aktivasi sigmoid pada lapisan keluaran dan variasi sigmoid, tanh, serta ReLU pada lapisan tersembunyi. Tiga strategi optimisasi diuji: batch, mini-batch (32), dan stochastic gradient descent. Semua model dilatih selama 200 epoch dengan laju belajar tetap 0{,}01.【F:notebook.ipynb†L703-L938】
+Pra-pemrosesan meliputi pengisian nilai BMI yang hilang menggunakan median, penghapusan kategori gender langka, one-hot encoding fitur kategorikal, standardisasi fitur numerik, dan pembagian data 80:20 dengan stratifikasi label. Jaringan menggunakan arsitektur \([\texttt{input\_dim},32,16,1]\) dengan aktivasi sigmoid pada lapisan keluaran dan variasi sigmoid, tanh, serta ReLU pada lapisan tersembunyi. Tiga strategi optimisasi diuji: batch, mini-batch (32), dan stochastic gradient descent. Semua model dilatih selama 200 epoch dengan laju belajar tetap 0{,}01.
 
-\begin{table}[t]
+\begin{table}[htbp]
     \centering
     \caption{Ringkasan dataset setelah pra-pemrosesan.}
     \begin{tabular}{>{\raggedright\arraybackslash}p{0.52\textwidth} >{\raggedleft\arraybackslash}p{0.35\textwidth}}
@@ -36,9 +36,9 @@ Pra-pemrosesan meliputi pengisian nilai BMI yang hilang menggunakan median, peng
 \end{table}
 
 \section*{Hasil dan Diskusi}
-Tabel~\ref{tab:metrics} merangkum performa sembilan kombinasi aktivasi dan strategi gradient descent. Kombinasi sigmoid dengan stochastic gradient descent menghasilkan F1-score tertinggi sebesar 0,171 dan presisi 0,30, walaupun recall masih terbatas (0,12). Variasi tanh dengan stochastic gradient descent berada di peringkat kedua dengan F1-score 0,16 dan keseimbangan presisi-recall yang serupa. Strategi batch cenderung menghasilkan gradien yang stabil namun gagal mengenali kelas minoritas (F1-score 0), menandakan kebutuhan teknik penyeimbangan tambahan. Mini-batch menawarkan kompromi yang baik, terutama untuk aktivasi tanh, namun masih menghadapi tantangan pada recall karena ketidakseimbangan data.【F:notebook.ipynb†L703-L920】
+Tabel~\ref{tab:metrics} merangkum performa sembilan kombinasi aktivasi dan strategi gradient descent. Kombinasi sigmoid dengan stochastic gradient descent menghasilkan F1-score tertinggi sebesar 0,171 dan presisi 0,30, walaupun recall masih terbatas (0,12). Variasi tanh dengan stochastic gradient descent berada di peringkat kedua dengan F1-score 0,16 dan keseimbangan presisi-recall yang serupa. Strategi batch cenderung menghasilkan gradien yang stabil namun gagal mengenali kelas minoritas (F1-score 0), menandakan kebutuhan teknik penyeimbangan tambahan. Mini-batch menawarkan kompromi yang baik, terutama untuk aktivasi tanh, namun masih menghadapi tantangan pada recall karena ketidakseimbangan data.
 
-\begin{table}[b]
+\begin{table}[htbp]
     \centering
     \caption{Kinerja model pada data uji untuk setiap kombinasi aktivasi dan strategi gradient descent.}
     \label{tab:metrics}
@@ -60,7 +60,8 @@ Tabel~\ref{tab:metrics} merangkum performa sembilan kombinasi aktivasi dan strat
     \end{tabular}
 \end{table}
 
+ 
 \section*{Kesimpulan}
-Eksperimen menunjukkan bahwa implementasi jaringan syaraf tiruan dari awal mampu mencapai F1-score 0,171 pada data uji dengan kombinasi sigmoid dan stochastic gradient descent. Namun, ketidakseimbangan kelas tetap menjadi faktor pembatas utama bagi recall. Pekerjaan lanjutan dapat mencakup penyeimbangan kelas (mis.~SMOTE atau penyesuaian bobot kelas), eksplorasi laju belajar adaptif, atau regulasi tambahan untuk meningkatkan generalisasi terhadap kelas minoritas.【F:notebook.ipynb†L703-L920】
+Eksperimen menunjukkan bahwa implementasi jaringan syaraf tiruan dari awal mampu mencapai F1-score 0,171 pada data uji dengan kombinasi sigmoid dan stochastic gradient descent. Namun, ketidakseimbangan kelas tetap menjadi faktor pembatas utama bagi recall. Pekerjaan lanjutan dapat mencakup penyeimbangan kelas (mis.~SMOTE atau penyesuaian bobot kelas), eksplorasi laju belajar adaptif, atau regulasi tambahan untuk meningkatkan generalisasi terhadap kelas minoritas.
 
 \end{document}
